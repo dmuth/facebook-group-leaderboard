@@ -1,0 +1,40 @@
+extends layout
+
+block content
+
+	h1 Analysis of last #{data.config.numPosts} posts to group #{data.name}
+
+	script.
+		
+		$(document).ready(function() {
+
+		});
+
+
+	div(class="row")
+		div(class="col-md-12")  test in bootstrap
+
+	//
+	// Loop through our top posters
+	//
+	h2 Top #{data.config.numTopPosters} posters
+	ul
+		each val, index in data.post_stats
+			- var name = val.user.name
+			- var id = val.user.id
+			- var count = val.count
+			li= name + " (" + count + " posts)"
+
+	//
+	// ...and top commenters!
+	//
+	h2 Top #{data.config.numTopCommenters} commenters
+	ul
+		each val, index in data.comment_stats
+			- var name = val.user.name
+			- var id = val.user.id
+			- var count = val.count
+			li= name + " (" + count + " posts)"
+
+
+
