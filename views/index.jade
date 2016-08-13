@@ -20,8 +20,9 @@ block content
 				p
 					- var uri = index
 					- var name = val.name + " (Group ID#: " + val.id + "), " + val.config.numPosts + " most recent posts"
+					- var last = val.last_updated
 					a(href="/group/" + uri) #{name}
-
+				p Last updated: #{last}
 
 	br
 	br
