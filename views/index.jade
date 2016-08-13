@@ -1,5 +1,45 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+
+	h1 Facebook Group Stats
+
+	script.
+		
+		$(document).ready(function() {
+
+		});
+
+
+	div(class="row")
+		div(class="col-md-12")  test in bootstrap
+
+	ul
+		each val, index in data
+			li
+				p
+					- var uri = index
+					- var name = val.name + " (Group ID#: " + val.id + "), " + val.config.numPosts + " most recent posts"
+					a(href="/group/" + uri) #{name}
+
+
+	br
+	br
+	br
+	br
+	br
+	br
+
+
+	if user
+		p User: #{user}, Provider: #{provider}
+		p
+			a(href="/logout") Logout
+
+	else
+		p No username!
+		p
+			a(href="/auth/facebook") 
+				img(src="/images/login-with-facebook.png" height=40) 
+
+
