@@ -4,3 +4,8 @@
 #
 config/local.json
 
+# Vim
+*.swp
+
+npm-debug.log
+
