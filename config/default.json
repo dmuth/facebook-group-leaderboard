@@ -4,11 +4,14 @@
 //
 // What groups do we want to query?
 //
-"groups": [
+"groups": {
 	//
 	// Anthrocon Facebook Group
 	//
-	{
+	"anthrocon": {
+		//
+		// The "id" field is REQUIRED.  Everything else is optional.
+		//
 		id: "49844448265",
 		numPosts: 10,
 		numTopPosters: 5,
@@ -17,8 +20,20 @@
 		retryInterval: 10,
 	},
 
+	"anthrocon2": {
+		//
+		// The "id" field is REQUIRED.  Everything else is optional.
+		//
+		id: "49844448265",
+		numPosts: 10,
+		numTopPosters: 2,
+		numTopCommenters: 2,
+		refreshInterval: 30,
+		retryInterval: 10,
+	},
 
-],
+
+},
 
 
 /////
