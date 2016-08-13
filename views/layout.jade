@@ -1,7 +1,54 @@
 doctype html
 html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
-    block content
+	head
+
+		meta(name="viewport" content="width=device-width, initial-scale=1")
+
+		title= title
+		// link(rel='stylesheet', href='/stylesheets/style.css')
+
+		// Bootstrap Core CSS 
+		link(href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous")
+		script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js")
+		script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha256-KXn5puMvxCw+dAYznun+drMdG1IFl3agK0p/pqT9KAo= sha512-2e8qq0ETcfWRI4HJBzQiA3UoyFk6tbNyG+qSaIBZLyW9Xf3sWZHN/lxe9fTh1U45DpPf07yj94KsUHHWe4Yk1A==" crossorigin="anonymous")
+
+		// Custom CSS
+		link(rel='stylesheet', href='/stylesheets/style.css')
+
+		// HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
+		// WARNING: Respond.js doesn't work if you view the page via file://
+		<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+	body
+
+		// Based on http://webdesign.tutsplus.com/tutorials/baking-bootstrap-snippets-with-jade--cms-22798
+		<!-- Navigation -->
+		nav(class="navbar navbar-inverse navbar-fixed-top" role="navigation")
+
+			.container
+
+				<!-- Brand and toggle get grouped for better mobile display -->
+				.navbar-header
+
+					button(type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1")
+						.span(class="sr-only") Toggle navigation
+						.span(class="icon-bar")
+						.span(class="icon-bar")
+						.span(class="icon-bar")
+
+					a(class="navbar-brand" href="/") Home
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				div(class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="max-height: none; ")
+
+					ul(class="nav navbar-nav")
+						li: a(href="/") Facebook Group Stats
+
+
+		.container(style="padding-bottom: 50px;")
+			block content
+
+
