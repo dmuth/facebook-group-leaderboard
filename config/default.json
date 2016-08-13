@@ -1,0 +1,14 @@
+{
+/* What groups do we want to query? */
+"groups": [
+	/* Anthrocon */
+	"49844448265"
+],
+
+/* How many seconds before retrying. 
+Note that Facebook allows 200 queries per user per hour.  3600/200 > 18, so values of greater than 18 seconds would be a good idea...
+*/
+"retryInterval": 5
+}
+
+
