@@ -1,24 +1,59 @@
 {
-/* What groups do we want to query? */
+
+
+//
+// What groups do we want to query?
+//
 "groups": [
-	/* Anthrocon */
-	"49844448265"
+	//
+	// Anthrocon Facebook Group
+	//
+	{
+		id: "49844448265",
+		numPosts: 10,
+		numTopPosters: 5,
+		numTopCommenters: 3,
+		refreshInterval: 30,
+		retryInterval: 10,
+	},
+
+
 ],
 
-/* How many seconds before retrying. 
-Note that Facebook allows 200 queries per user per hour.  3600/200 > 18, so values of greater than 18 seconds would be a good idea...
-*/
-"retryInterval": 5,
 
-/* How many posts to fetch from each group? */
-numPosts: 20,
+/////
+//
+// Default options.  These are all default options for groups.
+// Each group can override any of these options with its own values.
+//
+//
 
-/* How many top posters do we want? */
-numTopPosters: 3,
+//
+// How many seconds before retrying. in case of an error.
+// Note that Facebook allows 200 queries per user per hour.  
+// 3600/200 > 18, so values of greater than 18 seconds would be a good idea...
+//
+retryInterval: 300,
 
-/* How many top commenters do we want? */
-numTopCommenters: 3,
+//
+// How many seconds before refreshing a group?
+//
+refreshInterval: 900,
 
+//
+// How many posts to fetch from each group? 
+//
+numPosts: 100,
+
+//
+// How many top posters do we want?
+//
+numTopPosters: 10,
+
+//
+// How many top commenters do we want?
+//
+numTopCommenters: 10,
 
 }
 
