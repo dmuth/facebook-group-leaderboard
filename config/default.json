@@ -8,7 +8,18 @@
 /* How many seconds before retrying. 
 Note that Facebook allows 200 queries per user per hour.  3600/200 > 18, so values of greater than 18 seconds would be a good idea...
 */
-"retryInterval": 5
+"retryInterval": 5,
+
+/* How many posts to fetch from each group? */
+numPosts: 20,
+
+/* How many top posters do we want? */
+numTopPosters: 3,
+
+/* How many top commenters do we want? */
+numTopCommenters: 3,
+
+
 }
 
 
