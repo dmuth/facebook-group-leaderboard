@@ -1,0 +1,6 @@
+
+#
+# Don't check in our local file
+#
+config/local.json
+
