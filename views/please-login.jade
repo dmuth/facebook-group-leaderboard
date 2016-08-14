@@ -1,0 +1,34 @@
+extends layout
+
+block content
+
+	h1 Facebook Group Stats
+
+	script.
+		
+		$(document).ready(function() {
+
+		});
+
+
+
+	br
+	br
+	br
+	br
+	br
+	br
+
+
+	if user
+		p User: #{user}, Provider: #{provider}, ID: #{provider_id}
+		p
+			a(href="/logout") Logout
+
+	else
+		p No username!
+		p
+			a(href="/auth/facebook") 
+				img(src="/images/login-with-facebook.png" height=40) 
+
+

@@ -5,16 +5,19 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var passport = require('passport');
+
 var config = require("config");
 var Facebook = require("./lib/facebook");
+var force_login = require("./lib/middleware/login");
 
-var passport = require('passport');
 var session = require("./lib/session")(config.sessionSecret);
 
 var routes = require('./routes/index');
 var group = require("./routes/group");
 var auth = require("./routes/auth")(config.facebookAuth);
 var logout = require("./routes/logout");
+var please_login = require("./routes/please-login");
 
 var app = express();
 
@@ -46,6 +49,7 @@ fb.go();
 app.use(session());
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(force_login);
 
 /**
 * Function to serialize our user info before storing it in the session
@@ -67,6 +71,7 @@ app.use('/', routes(fb));
 app.use("/group", group(fb));
 app.use("/auth", auth);
 app.use("/logout", logout);
+app.use("/please-login", please_login);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
