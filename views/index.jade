@@ -14,13 +14,14 @@ block content
 
 	each val, index in data
 		div(class="row")
-			div(class="col-md-8")
+			div(class="col-md-4 col-sm-12")
 				- var uri = index
 				- var name = val.name + ", " +  val.config.numPosts + " most recent posts"
 				- var last = val.last_updated
-				a(href="/group/" + uri type="button" class="btn btn-primary" ) 
-					div 
-						| #{val.name}
+				a(class="group-button" href="/group/" + uri type="button" class="btn btn-lg btn-primary") 
+					span(class="glyphicon glyphicon-comment") 
+					span
+						| &nbsp; #{val.name}
 						br
 						| #{val.config.numPosts} most recent posts
 						
