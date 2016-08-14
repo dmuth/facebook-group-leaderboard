@@ -1,8 +1,35 @@
+   
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	padding-top: 70px;
+	/* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
 
-a {
-  color: #00B7FF;
+.navbar-inverse {
+	/*
+	background-color: #7A58B0;
+	border-color: #5A3890;
+	*/
 }
+
+.navbar-inverse .navbar-brand  {
+	color: white;
+}
+
+.navbar-inverse .navbar-nav>li>a
+{
+	color: white;
+}
+
+.alert {
+  position: relative;
+}
+
+
+/**
+* Waste less horizontal space above header tags.
+*/
+h1,h2 {
+	margin-top: 0px;
+}
+
+
