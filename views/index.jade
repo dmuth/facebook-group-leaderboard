@@ -26,23 +26,4 @@ block content
 						
 				p(class="last-updated") Last updated: #{last}
 
-	br
-	br
-	br
-	br
-	br
-	br
-
-
-	if user
-		p User: #{user.name}, Provider: #{user.provider}, ID: #{user.provider_id}
-		p
-			a(href="/logout") Logout
-
-	else
-		p No username!
-		p
-			a(href="/auth/facebook") 
-				img(src="/images/login-with-facebook.png" height=40) 
-
 
