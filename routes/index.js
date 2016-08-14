@@ -1,9 +1,22 @@
+/**
+* Endpoint for /
+*/
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
+
+module.exports = function(fb) {
+
+
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+
+	var data = fb.getData();
+
+	res.render('index', { data: data });
+
 });
 
-module.exports = router;
+return(router);
+
+} // End of exports()
+

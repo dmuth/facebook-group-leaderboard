@@ -19,7 +19,7 @@ router.get('/:group', function(req, res, next) {
 		return(null);
 	}
 
-	res.render('group', { data: data[group] });
+	res.render('group', { group: group, data: data[group] });
 
 });
 
