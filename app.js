@@ -5,7 +5,11 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var config = require("config");
+var Facebook = require("./lib/facebook");
+
 var routes = require('./routes/index');
+var group = require("./routes/group");
 var users = require('./routes/users');
 
 var app = express();
@@ -22,7 +26,21 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
+
+var fb = new Facebook(config);
+fb.go();
+//setInterval(function() {
+	//console.log("TEST", JSON.stringify(fb.getData(), null, 2));
+	//console.log("TESTap", fb.getData()["anthrocon"].post_stats.length);
+	//console.log("TESTac", fb.getData()["anthrocon"].comment_stats.length);
+	//console.log("TESTa2p", fb.getData()["anthrocon2"].post_stats.length);
+	//console.log("TESTa2c", fb.getData()["anthrocon2"].comment_stats.length);
+/*
+*/
+//	}, 3000);
+
+app.use('/', routes(fb));
+app.use("/group", group(fb));
 app.use('/users', users);
 
 // catch 404 and forward to error handler
