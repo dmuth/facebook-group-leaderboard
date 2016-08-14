@@ -13,25 +13,12 @@
 		// The "id" field is REQUIRED.  Everything else is optional.
 		//
 		id: "49844448265",
-		numPosts: 10,
+		numPosts: 50,
 		numTopPosters: 5,
 		numTopCommenters: 3,
-		refreshInterval: 30,
+		refreshInterval: 300,
 		retryInterval: 10,
 	},
-
-	"anthrocon2": {
-		//
-		// The "id" field is REQUIRED.  Everything else is optional.
-		//
-		id: "49844448265",
-		numPosts: 10,
-		numTopPosters: 2,
-		numTopCommenters: 2,
-		refreshInterval: 30,
-		retryInterval: 10,
-	},
-
 
 },
 
@@ -42,6 +29,15 @@
 // Each group can override any of these options with its own values.
 //
 //
+
+//
+// The secret for encrpyting sessions.
+//
+// PLEASE REPLACE/OVERRIDE THIS WITH ONE OF YOUR OWN!
+//
+// You can generate a replacement key with DiceWare: https://www.dmuth.org/diceware/
+//
+sessionSecret: "ChildClarkSnyder",
 
 //
 // How many seconds before retrying. in case of an error.

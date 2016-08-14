@@ -8,6 +8,8 @@ var bodyParser = require('body-parser');
 var config = require("config");
 var Facebook = require("./lib/facebook");
 
+var session = require("./lib/session")(config.sessionSecret);
+
 var routes = require('./routes/index');
 var group = require("./routes/group");
 var users = require('./routes/users');
@@ -42,6 +44,8 @@ fb.go();
 app.use('/', routes(fb));
 app.use("/group", group(fb));
 app.use('/users', users);
+
+app.use(session());
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
