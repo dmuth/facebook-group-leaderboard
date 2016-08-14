@@ -22,6 +22,14 @@
 
 },
 
+//
+// Our info for our Facebook app
+//
+facebookAuth: {
+    clientID: "FIXME",
+    clientSecret: "FIXME",
+    callbackURL: "FIXME",
+},
 
 /////
 //

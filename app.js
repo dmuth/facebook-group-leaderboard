@@ -8,11 +8,13 @@ var bodyParser = require('body-parser');
 var config = require("config");
 var Facebook = require("./lib/facebook");
 
+var passport = require('passport');
 var session = require("./lib/session")(config.sessionSecret);
 
 var routes = require('./routes/index');
 var group = require("./routes/group");
-var users = require('./routes/users');
+var auth = require("./routes/auth")(config.facebookAuth);
+var logout = require("./routes/logout");
 
 var app = express();
 
@@ -41,11 +43,30 @@ fb.go();
 */
 //	}, 3000);
 
+app.use(session());
+app.use(passport.initialize());
+app.use(passport.session());
+
+/**
+* Function to serialize our user info before storing it in the session
+*/
+passport.serializeUser(function(user, done) {
+	//debug("serializeUser(): %j", user);
+	done(null, user);
+});
+
+/**
+* Function to deserialize our user info when pulling it from the session.
+*/
+passport.deserializeUser(function(id, done) {
+	//debug("deserializeUser(): %j", id);
+	done(null, id);
+});
+
 app.use('/', routes(fb));
 app.use("/group", group(fb));
-app.use('/users', users);
-
-app.use(session());
+app.use("/auth", auth);
+app.use("/logout", logout);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
