@@ -12,14 +12,15 @@ var debug = require("debug")("app");
 //
 router.get('/', function(req, res, next) {
 
-	user = null;
-	provider = null;
+	var user = null;
+	var provider = null;
 	if (req.user) {
-		user = req.user.name;
-		provider = req.user.provider;
+		var user = req.user.name;
+		var provider = req.user.provider;
 		debug("Logging out %s, %s", user, provider);
-		
 	}
+
+	delete req.user;
 
 	//debug("COUNT: %s", req.session.count);
 	req.logout();
