@@ -13,19 +13,21 @@ router.get('/', function(req, res, next) {
 
 	var data = fb.getData();
 
-	user = null;
-	provider = null;
+	var user = null;
 
 	if (req.user) {
-		user = req.user.name;
-		provider = req.user.provider;
-		provider_id = req.user.provider_id;
+	
+		user = {
+			name: req.user.name,
+			provider: req.user.provider,
+			provider_id: req.user.provider_id,
+			};	
 		var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-		debug("user=\"" + user + "\" id=\"" + provider_id + "\" ip=\"" + ip + "\"");
+		debug("user=\"" + user.name + "\" id=\"" + user.provider_id + "\" ip=\"" + ip + "\"");
 
 	}
 
-	res.render('index', { data: data });
+	res.render('index', { data: data, user: user});
 
 });
 

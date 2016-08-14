@@ -27,7 +27,7 @@ passport.use(new FacebookStrategy({
 	user.provider = profile.provider;
 	user.provider_id = profile.id;
 
-	debug("User we got from Facebook: %j", user);
+	debug("Logged in! User we got from Facebook: %j", user);
 
 	done(null, user);
 
