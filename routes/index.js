@@ -15,9 +15,12 @@ router.get('/', function(req, res, next) {
 
 	var user = null;
 
+	//
+	// If we're logged in, pull out the user info
+	//
 	if (req.user) {
 	
-		user = {
+		var user = {
 			name: req.user.name,
 			provider: req.user.provider,
 			provider_id: req.user.provider_id,
