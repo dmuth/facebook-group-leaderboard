@@ -2,7 +2,7 @@ extends layout
 
 block content
 
-	h2 Analysis of last #{data.config.numPosts} posts to group #{data.name}
+	h1 Analysis of last #{data.config.numPosts} posts to group #{data.name}
 
 	script.
 		
@@ -11,7 +11,7 @@ block content
 		});
 
 	- var last = data.last_updated
-	p Last updated: #{last}
+	p(class="last-updated") Last updated: #{last}
 
 	//
 	// Loop through our top posters

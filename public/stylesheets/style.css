@@ -32,4 +32,15 @@ h1,h2 {
 	margin-top: 0px;
 }
 
+h1 {
+	font-size: 24px;
+}
+
+h2 {
+	font-size: 20px;
+}
+
+.last-updated {
+	font-size: smaller;
+}
 
