@@ -9,3 +9,8 @@ config/local.json
 
 npm-debug.log
 
+#
+# Don't check in the contents of sessiosn
+#
+sessions/
+
