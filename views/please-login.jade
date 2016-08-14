@@ -2,7 +2,7 @@ extends layout
 
 block content
 
-	h1 Facebook Group Stats
+	h1 Login
 
 	script.
 		
@@ -10,25 +10,21 @@ block content
 
 		});
 
+	p Please log into Facebook to access this app.
 
-
-	br
-	br
-	br
-	br
+	a(href="/auth/facebook") 
+		img(src="/images/login-with-facebook.png" height=40) 
 	br
 	br
 
+	h2 Why are you asking for a login?
 
-	if user
-		p User: #{user}, Provider: #{provider}, ID: #{provider_id}
-		p
-			a(href="/logout") Logout
+	p The reason we're asking for a Facebook login is because access to <a href="https://www.google.com/landing/2step/">Facebook's Graph API</a> requires a Facebook Application assocaited with it, which in turn requires a user login.
 
-	else
-		p No username!
-		p
-			a(href="/auth/facebook") 
-				img(src="/images/login-with-facebook.png" height=40) 
+	h2 Privacy Policy
+
+	p We don't store any of your data.  Zero, zilch, nada.  
+
+	p If you still don't trust us, feel free to <a href="https://github.com/dmuth/facebook-group-stats">root through the source code</a>.
 
 
