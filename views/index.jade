@@ -11,20 +11,26 @@ block content
 		});
 
 
+	each crowd, crowd_name in data
 
-	each val, index in data
 		div(class="row")
-			div(class="col-md-4 col-sm-12")
-				- var uri = index
-				- var name = val.name + ", " +  val.config.numPosts + " most recent posts"
-				- var last = val.last_updated
-				a(class="group-button" href="/group/" + uri type="button" class="btn btn-lg btn-primary") 
-					span(class="glyphicon glyphicon-comment") 
-					span
-						| &nbsp; #{val.name}
-						br
-						| #{val.config.numPosts} most recent posts
-						
-				p(class="last-updated") Last updated: #{last}
+		div(class="col-md-4")
+		h3 #{crowd.name}
 
+		each group, group_name in crowd
+
+			if group.id
+
+				div(class="col-md-4")
+					- var name = group.name + ", " +  group.config.numPosts + " most recent posts"
+					- var last = group.last_updated
+					- var uri = "/group" + "/" + crowd_name + "/" + group_name;
+					a(class="group-button" href=uri type="button" class="btn btn-lg btn-primary") 
+						span(class="glyphicon glyphicon-comment") 
+						span
+							| &nbsp; #{group.name}
+							br
+							| #{group.config.numPosts} most recent posts
+							
+					p(class="last-updated") Last updated: #{last}
 

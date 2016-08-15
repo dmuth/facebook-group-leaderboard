@@ -2,22 +2,66 @@
 
 
 //
-// What groups do we want to query?
+// Define our "crowds", which are groups of groups.
+// The reason we have a higher level of organization here is because we may want 
+// pull data from the same group multiple times (Top 5, Top 10, Top 25, etc...)
+// and this allows us to have a logical grouping of such things.
 //
-"groups": {
-	//
-	// Anthrocon Facebook Group
-	//
+"crowds": {
+
 	"anthrocon": {
-		//
-		// The "id" field is REQUIRED.  Everything else is optional.
-		//
-		id: "49844448265",
-		numPosts: 50,
-		numTopPosters: 5,
-		numTopCommenters: 3,
-		refreshInterval: 300,
-		retryInterval: 10,
+		"name": "Anthrocon Leaderboards",
+
+		"groups": {
+
+			"anthrocon10": {
+				//
+				// Name is what will be dispalyed on the page.
+				// If not specified, defaults to the key.
+				//
+				name: "Anthrocon recent 10",
+				//
+				// The "id" field is REQUIRED.  Everything else is optional.
+				//
+				id: "49844448265",
+				numPosts: 10,
+				numTopPosters: 5,
+				numTopCommenters: 3,
+				refreshInterval: 300,
+				retryInterval: 10,
+			},
+
+			"anthrocon50": {
+				name: "Anthrocon recent 50",
+				id: "49844448265",
+				numPosts: 50,
+				numTopPosters: 10,
+				numTopCommenters: 10,
+				refreshInterval: 300,
+				retryInterval: 10,
+			},
+
+		},
+
+	},
+
+	"eurofurence": {
+		"name": "Eurofurence Lists",
+
+		"groups": {
+
+			"eurofurence10": {
+				name: "Eurofurence recent 10",
+				id: "487362771386161",
+				numPosts: 10,
+				numTopPosters: 10,
+				numTopCommenters: 10,
+				refreshInterval: 300,
+				retryInterval: 10,
+			},
+
+		},
+
 	},
 
 },
