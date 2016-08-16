@@ -40,6 +40,45 @@ router.get("/:crowd", function(req, res, next) {
 
 });
 
+
+router.get("/:crowd/:group", function(req, res, next) {
+
+	var data = fb.getData();
+	var crowd = req.params.crowd;
+	var group = req.params.group;
+	debug("Loading page for crowd '" + crowd + "', group '" + group + "'");
+
+	if (!data[crowd]) {
+		res.status(404)
+			.send("Crowd not found!");
+		return(null);
+	}
+
+	if (!data[crowd][group]) {
+		res.status(404)
+			.send("Group not found!");
+		return(null);
+	}
+
+	//
+	// If we're logged in, pull out the user info
+	//
+	if (req.user) {
+	
+		var user = {
+			name: req.user.name,
+			provider: req.user.provider,
+			provider_id: req.user.provider_id,
+			};	
+		var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+		debug("user=\"" + user.name + "\" id=\"" + user.provider_id + "\" ip=\"" + ip + "\"");
+
+	}
+
+	res.render("group", { crowd: crowd, group: group, data: data[crowd][group], user:user });
+
+});
+
 return(router);
 
 } // End of exports()
