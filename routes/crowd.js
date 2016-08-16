@@ -1,22 +1,23 @@
 /**
-* Endpoint for /group
+* Endpoint for /:crowd and its children
 */
 var express = require('express');
 var router = express.Router();
 
-var debug = require("debug")("page-group");
+var debug = require("debug")("page-crowd");
 
 module.exports = function(fb) {
 
 
-router.get('/:group', function(req, res, next) {
+router.get("/:crowd", function(req, res, next) {
 
 	var data = fb.getData();
-	var group = req.params.group;
+	var crowd = req.params.crowd;
+	debug("Loading page for crowd '" + crowd + "'");
 
-	if (!data[group]) {
+	if (!data[crowd]) {
 		res.status(404)
-			.send("Group not found!");
+			.send("Crowd not found!");
 		return(null);
 	}
 
@@ -35,7 +36,7 @@ router.get('/:group', function(req, res, next) {
 
 	}
 
-	res.render('group', { group: group, data: data[group], user:user });
+	res.render("crowd", { crowd: crowd, data: data[crowd], user:user });
 
 });
 

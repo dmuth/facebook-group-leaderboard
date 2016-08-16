@@ -1,0 +1,33 @@
+extends layout
+
+block content
+
+	h1 #{data.name}
+
+	script.
+		$(document).ready(function() {
+		});
+
+
+	//
+	// Loop through our current crowd and print up the groups in it
+	//
+	each group, group_name in data
+
+		if group.id
+
+			div(class="col-md-4")
+				- var name = group.name + ", " +  group.config.numPosts + " most recent posts"
+				- var last = group.last_updated
+				- var uri = "/group" + "/" + crowd + "/" + group_name;
+				a(class="group-button" href=uri type="button" class="btn btn-lg btn-primary") 
+					span(class="glyphicon glyphicon-comment") 
+					span
+						| &nbsp; #{group.name}
+						br
+						| #{group.config.numPosts} most recent posts
+							
+				p(class="last-updated") Last updated: #{last}
+
+
+
