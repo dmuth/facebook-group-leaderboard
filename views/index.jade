@@ -12,23 +12,24 @@ block content
 	each crowd, crowd_name in data
 
 		div(class="row")
-		div(class="col-md-4")
-		h3 <a href="/group/#{crowd_name}">#{crowd.name}</a>
 
-		each group, group_name in crowd
+			div(class="col-md-12")
+				h3 <a href="/group/#{crowd_name}">#{crowd.name}</a>
 
-			if group.id
+				each group, group_name in crowd
 
-				div(class="col-md-4")
-					- var name = group.name + ", " +  group.config.numPosts + " most recent posts"
-					- var last = group.last_updated
-					- var uri = "/group" + "/" + crowd_name + "/" + group_name;
-					a(class="group-button" href=uri type="button" class="btn btn-lg btn-primary") 
-						span(class="glyphicon glyphicon-comment") 
-						span
-							| &nbsp; #{group.name}
-							br
-							| #{group.config.numPosts} most recent posts
+					if group.id
+
+						div(class="col-md-4")
+							- var name = group.name + ", " +  group.config.numPosts + " most recent posts"
+							- var last = group.last_updated
+							- var uri = "/group" + "/" + crowd_name + "/" + group_name;
+							a(class="group-button" href=uri type="button" class="btn btn-lg btn-primary") 
+								span(class="glyphicon glyphicon-comment") 
+								span
+									| &nbsp; #{group.name}
+									br
+									| #{group.config.numPosts} most recent posts
 							
-					p(class="last-updated") Last updated: #{last}
+							p(class="last-updated") Last updated: #{last}
 
