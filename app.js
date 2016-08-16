@@ -80,11 +80,16 @@ app.use("/auth", auth);
 app.use("/logout", logout);
 app.use("/please-login", please_login);
 
-// catch 404 and forward to error handler
+//
+// If we make it here, there was no match, so throw a 404.
+//
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+
+	res.status(404);
+
+	res.render("404", { url: req.url });
+	return;
+
 });
 
 // error handlers
