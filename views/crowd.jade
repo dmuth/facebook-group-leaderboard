@@ -2,11 +2,16 @@ extends layout
 
 block content
 
-	h1 #{data.name}
-
 	script.
 		$(document).ready(function() {
 		});
+
+	h1 #{data.name}
+
+	ol(class="breadcrumb")
+		li 
+			a(href="/") Home
+		li(class="active") #{data.name}
 
 
 	//

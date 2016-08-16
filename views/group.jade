@@ -2,13 +2,19 @@ extends layout
 
 block content
 
+	script.
+		$(document).ready(function() {
+		});
+
 	h1 Analysis of last #{data.config.numPosts} posts to group #{data.name}
 
-	script.
-		
-		$(document).ready(function() {
+	ol(class="breadcrumb")
+		li 
+			a(href="/") Home
+		li 
+			a(href="/group/#{crowd}") #{crowd_name}
+		li(class="active") #{data.name}
 
-		});
 
 	- var last = data.last_updated
 	p(class="last-updated") Last updated: #{last}
