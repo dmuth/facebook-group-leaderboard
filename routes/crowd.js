@@ -75,7 +75,7 @@ router.get("/:crowd/:group", function(req, res, next) {
 
 	}
 
-	res.render("group", { crowd: crowd, group: group, data: data[crowd][group], user:user });
+	res.render("group", { crowd: crowd, group: group, crowd_name: data[crowd].name, data: data[crowd][group], user:user });
 
 });
 
