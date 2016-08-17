@@ -1,0 +1,21 @@
+extends layout
+
+block content
+
+	h1 #{message} :-(
+
+	script.
+		$(document).ready(function() {
+		});
+
+
+	div(class="row")
+		div(class="col-md-12")
+			p 
+				| This issue MAY be temporary, if the server was just restarted and data
+				| is still being downloaded.  
+				| If it persists for more than a few minutes, then the site admin should take a closer look at the logs.
+
+			img(class="img-responsive" src="/images/cheetah-in-bucket.png")
+
+

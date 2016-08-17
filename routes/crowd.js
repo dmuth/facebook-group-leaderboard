@@ -16,8 +16,8 @@ router.get("/:crowd", function(req, res, next) {
 	debug("Loading page for crowd '" + crowd + "'");
 
 	if (!data[crowd]) {
-		res.status(404)
-			.send("Crowd not found!");
+		res.status(404);
+		res.render("404-temp", { url: req.url, message: "Crowd not found!" });
 		return(null);
 	}
 
@@ -49,14 +49,14 @@ router.get("/:crowd/:group", function(req, res, next) {
 	debug("Loading page for crowd '" + crowd + "', group '" + group + "'");
 
 	if (!data[crowd]) {
-		res.status(404)
-			.send("Crowd not found!");
+		res.status(404);
+		res.render("404-temp", { url: req.url, message: "Crowd not found!" });
 		return(null);
 	}
 
 	if (!data[crowd][group]) {
-		res.status(404)
-			.send("Group not found!");
+		res.status(404);
+		res.render("404-temp", { url: req.url, message: "Group not found!" });
 		return(null);
 	}
 
