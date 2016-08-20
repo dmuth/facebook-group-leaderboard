@@ -47,11 +47,15 @@ describe("Token handling", function () {
 
 	});
 
+
  	it("clear()", function(done) {
 
 		var token = new tokens();
-		token.put("test token", "test name", new Date().getTime() + 1000000).then(function() {
 
+		token.load().then(function() {
+			token.put("test token", "test name", new Date().getTime() + 1000000);
+
+		}).then(function() {
 			return token.clear();
 
 		}).then(function() {
@@ -73,8 +77,11 @@ describe("Token handling", function () {
  	it("get()", function(done) {
 
 		var token = new tokens();
-		
-		token.put("test token", "test name", new Date().getTime() + 1000000).then(function() {
+
+		token.load().then(function() {
+			return token.put("test token", "test name", new Date().getTime() + 1000000);
+
+		}).then(function() {
 			return token.put("test token2", "test name2", new Date().getTime() + 1000000);
 
 		}).then(function() {
@@ -108,7 +115,11 @@ describe("Token handling", function () {
  	it("get() on empty list", function(done) {
 
 		var token = new tokens();
-		token.get().then(function(data) {
+
+		token.load().then(function() {
+			return token.get();
+
+		}).then(function(data) {
 			done("We shouldn't have gotten here!");
 
 		}).catch(function(error) {
@@ -143,7 +154,11 @@ describe("Token handling", function () {
  	it("get() on partially expired data", function(done) {
 
 		var token = new tokens();
-		token.put("test token", "test name", new Date().getTime() ).then(function() {
+
+		token.load().then(function() {
+			return token.put("test token", "test name", new Date().getTime() );
+
+		}).then(function() {
 			return token.put("test token2", "test name2", new Date().getTime() );
 
 		}).then(function() {
@@ -227,8 +242,10 @@ describe("Token handling", function () {
 
 		lock();
 
-	
-		token.put("test token", "test name", new Date().getTime()).then(function() {
+		token.load().then(function() {
+			return token.put("test token", "test name", new Date().getTime())
+
+		}).then(function() {
 			lock();
 			return token.put("test token2", "test name2", new Date().getTime() + 1000000);
 
@@ -282,6 +299,84 @@ describe("Token handling", function () {
 	});
 
 
+	it("Error handling for load()", function(done) {
+
+		var token = new tokens();
+		token.count().then(function(num) {
+			num.should.equal(0);
+
+		}).catch(function(error) {
+			error.should.match(/^Tokens not loaded!/);
+
+		}).then(function() {
+			return token.get();
+
+		}).catch(function(error) {
+			error.should.match(/^Tokens not loaded!/);
+
+		}).then(function() {
+			return token.put();
+
+		}).catch(function(error) {
+			error.should.match(/^Tokens not loaded!/);
+
+		}).then(function() {
+			return token.load();
+
+		}).then(function() {
+			return token.count();
+
+		}).then(function(num) {
+			num.should.equal(0);
+
+			done();
+
+		}).catch(function(error) {
+			done(error);
+
+		});
+
+	});
+	
+
+ 	it("Delete tokens and make sure they are loaded again()", function(done) {
+
+		var token = new tokens();
+		var token2;
+
+		token.load().then(function() {
+			return token.put("test token", "test name", new Date().getTime() + 1000000);
+
+		}).then(function() {
+			return token.put("test token2", "test name2", new Date().getTime());
+
+		}).then(function() {
+			//
+			// Simulate a new run
+			//
+			return token.debugDeleteObjTokens();
+
+		}).then(function() {
+			return token.load();
+
+		}).then(function() {
+			return token.count();
+
+		}).then(function(num) {
+			num.should.equal(1);
+
+			token2 = new tokens();
+			return token.count();
+		
+		}).then(function(num) {
+			num.should.equal(1);
+
+			done();
+
+		});
+
+
+	});
 
 });
 
