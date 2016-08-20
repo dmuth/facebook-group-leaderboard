@@ -209,6 +209,79 @@ describe("Token handling", function () {
 	});
  
 
+ 	it("put with write contention()", function(done) {
+
+		var token = new tokens();
+
+		token.debugSetWriting(true);
+		token.debugSetWriting(false);
+	
+		//
+		// Prevent writes... briefly.
+		//
+		function lock() {
+			var delay = 10;
+			token.debugSetWriting(true);
+			setTimeout(function() { token.debugSetWriting(false); }, delay);
+		}
+
+		lock();
+
+	
+		token.put("test token", "test name", new Date().getTime()).then(function() {
+			lock();
+			return token.put("test token2", "test name2", new Date().getTime() + 1000000);
+
+		}).then(function() {
+			lock();
+			return token.put("test token3", "test name3", new Date().getTime() + 1000000);
+
+		}).then(function() {
+			return token.count();
+
+		}).then(function(num) {
+			num.should.equal(3);
+
+			lock();
+			return(token.get());
+
+		}).then(function(data) {
+			data.token.should.equal("test token2");
+			return(token.get());
+
+		}).then(function(data) {
+			data.token.should.equal("test token3");
+
+			return(token.get());
+		}).then(function(data) {
+			data.token.should.equal("test token2");
+
+			lock();
+			return(token.delete("test token2"));
+		}).then(function() {
+
+			return(token.count());
+		}).then(function(num) {
+			num.should.equal(1);
+
+			lock();
+			return(token.clear()); 
+		}).then(function() {
+
+			return(token.count());
+		}).then(function(num) {
+			num.should.equal(0);
+
+			done();
+
+		}).catch(function(error) {
+			done(error);
+
+		});
+
+	});
+
+
 
 });
 
