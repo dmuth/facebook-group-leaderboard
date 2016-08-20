@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
+	"clean": "rm -rfv $(pwd)/bin/cache/",
     "test": "mocha -R spec"
   },
   "dependencies": {
