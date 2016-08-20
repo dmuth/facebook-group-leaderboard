@@ -50,7 +50,7 @@ describe("Token handling", function () {
  	it("clear()", function(done) {
 
 		var token = new tokens();
-		token.put("test token", new Date().getTime() + 1000000).then(function() {
+		token.put("test token", "test name", new Date().getTime() + 1000000).then(function() {
 
 			return token.clear();
 
@@ -74,8 +74,8 @@ describe("Token handling", function () {
 
 		var token = new tokens();
 		
-		token.put("test token", new Date().getTime() + 1000000).then(function() {
-			return token.put("test token2", new Date().getTime() + 1000000);
+		token.put("test token", "test name", new Date().getTime() + 1000000).then(function() {
+			return token.put("test token2", "test name2", new Date().getTime() + 1000000);
 
 		}).then(function() {
 			return token.count();
@@ -123,8 +123,8 @@ describe("Token handling", function () {
  	it("get() on expired data", function(done) {
 
 		var token = new tokens();
-		token.put("test token", new Date().getTime() ).then(function() {
-			return token.put("test token2", new Date().getTime() );
+		token.put("test token", "test name", new Date().getTime() ).then(function() {
+			return token.put("test token2", "test name2", new Date().getTime() );
 
 		}).then(function() {
 			return(token.get());
@@ -143,11 +143,11 @@ describe("Token handling", function () {
  	it("get() on partially expired data", function(done) {
 
 		var token = new tokens();
-		token.put("test token", new Date().getTime() ).then(function() {
-			return token.put("test token2", new Date().getTime() );
+		token.put("test token", "test name", new Date().getTime() ).then(function() {
+			return token.put("test token2", "test name2", new Date().getTime() );
 
 		}).then(function() {
-			return token.put("test token3", new Date().getTime() + 1000000 );
+			return token.put("test token3", "test name3", new Date().getTime() + 1000000 );
 
 		}).then(function() {
 			return(token.get());
