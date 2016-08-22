@@ -14,3 +14,9 @@ npm-debug.log
 #
 sessions/
 
+#
+# Our persistent token data. Don't put access tokens in Git. :-)
+#
+bin/cache/
+
+
