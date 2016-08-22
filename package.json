@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "DEBUG=app,facebook*,auth*,page-*,query* node ./bin/www",
+    "start": "DEBUG=app*,facebook*,auth*,page-*,query*,tokens* node ./bin/www",
 	"clean": "rm -rfv $(pwd)/bin/cache/",
     "test": "mocha -R spec"
   },
