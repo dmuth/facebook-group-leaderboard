@@ -375,8 +375,46 @@ describe("Token handling", function () {
 
 		});
 
+	});
+
+
+	it("Call get() when there are no tokens", function(done) {
+
+		var token = new tokens();
+
+		token.load().then(function() {
+			return token.get();
+
+		}).then(function(data) {
+			done("We shouldn't be here!");
+
+		}).catch(function(error) {
+			error.should.match("No tokens available!");
+			done();
+
+		});
 
 	});
+
+
+	it("Call count() when there are no tokens", function(done) {
+
+		var token = new tokens();
+
+		token.load().then(function() {
+			return token.count();
+
+		}).then(function(num) {
+			num.should.equal(0);
+			done();
+
+		}).catch(function(error) {
+			done(error);
+
+		});
+
+	});
+
 
 });
 
