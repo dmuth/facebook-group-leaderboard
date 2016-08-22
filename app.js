@@ -4,18 +4,27 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var debug = require("debug")("app:main");
+var Promise = require("bluebird");
 
 var passport = require('passport');
 
 var config = require("config");
 var Facebook = require("./lib/facebook");
 var force_login = require("./lib/middleware/login");
+var Tokens = require("./lib/tokens");
 
 var session = require("./lib/session")(config.sessionSecret);
 
+
+var tokens = new Tokens();
+var fb = new Facebook(config, tokens);
+fb.go();
+
+
 var routes = require('./routes/index');
 var crowd = require("./routes/crowd");
-var auth = require("./routes/auth")(config.facebookAuth);
+var auth = require("./routes/auth")(config.facebookAuth, tokens, fb);
 var logout = require("./routes/logout");
 var please_login = require("./routes/please-login");
 
@@ -40,8 +49,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-var fb = new Facebook(config);
-fb.go();
 setInterval(function() {
 /*
 	console.log("TEST", JSON.stringify(fb.getData(), null, 2));
@@ -118,3 +125,5 @@ app.use(function(err, req, res, next) {
 
 
 module.exports = app;
+
+
