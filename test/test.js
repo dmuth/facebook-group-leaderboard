@@ -416,6 +416,39 @@ describe("Token handling", function () {
 	});
 
 
+	it("Call load() twice and make sure tokens aren't duplicated", function(done) {
+
+		var token = new tokens();
+
+		token.load().then(function() {
+			return token.count();
+
+		}).then(function(num) {
+			num.should.equal(0);
+			return token.put("test token", "test name", new Date().getTime() + 1000000);
+
+		}).then(function() {
+			return token.count();
+
+		}).then(function(num) {
+			num.should.equal(1);
+			return token.load();
+
+		}).then(function() {
+			return token.count();
+
+		}).then(function(num) {
+			num.should.equal(1);
+			done();
+
+		}).catch(function(error) {
+			done(error);
+
+		});
+
+	});
+
+
 });
 
 
