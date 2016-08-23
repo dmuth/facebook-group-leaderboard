@@ -83,9 +83,11 @@ app.use("/please-login", please_login);
 //
 app.use(function(req, res, next) {
 
+	var last_run = fb.isRunning();
 	res.status(404);
 
-	res.render("404", { url: req.url });
+
+	res.render("404", { url: req.url, last_run: last_run });
 	return;
 
 });

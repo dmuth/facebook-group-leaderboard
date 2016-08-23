@@ -8,10 +8,10 @@ var debug = require("debug")("app");
 
 module.exports = function(fb) {
 
-
 router.get('/', function(req, res, next) {
 
 	var data = fb.getData();
+	var last_run = fb.isRunning();
 
 	var user = null;
 
@@ -30,7 +30,7 @@ router.get('/', function(req, res, next) {
 
 	}
 
-	res.render('index', { data: data, user: user});
+	res.render('index', { data: data, user: user, last_run: last_run});
 
 });
 

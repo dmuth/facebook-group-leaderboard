@@ -1,0 +1,11 @@
+
+
+//
+// If there is no last_run time, then print up a notice that we haven't yet talked to Facebook.
+//
+if ! last_run
+	div( class="alert alert-warning") 
+		| We don't seem to have made any successful queries to Facebook yet.  
+		p
+		p If this message persists, the server admin should check the logs.
+

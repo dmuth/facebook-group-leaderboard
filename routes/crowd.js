@@ -12,6 +12,7 @@ module.exports = function(fb) {
 router.get("/:crowd", function(req, res, next) {
 
 	var data = fb.getData();
+	var last_run = fb.isRunning();
 	var crowd = req.params.crowd;
 	debug("Loading page for crowd '" + crowd + "'");
 
@@ -36,7 +37,7 @@ router.get("/:crowd", function(req, res, next) {
 
 	}
 
-	res.render("crowd", { crowd: crowd, data: data[crowd], user:user });
+	res.render("crowd", { crowd: crowd, data: data[crowd], user:user, last_run: last_run });
 
 });
 
@@ -44,21 +45,10 @@ router.get("/:crowd", function(req, res, next) {
 router.get("/:crowd/:group", function(req, res, next) {
 
 	var data = fb.getData();
+	var last_run = fb.isRunning();
 	var crowd = req.params.crowd;
 	var group = req.params.group;
 	debug("Loading page for crowd '" + crowd + "', group '" + group + "'");
-
-	if (!data[crowd]) {
-		res.status(404);
-		res.render("404-temp", { url: req.url, message: "Crowd not found!" });
-		return(null);
-	}
-
-	if (!data[crowd][group]) {
-		res.status(404);
-		res.render("404-temp", { url: req.url, message: "Group not found!" });
-		return(null);
-	}
 
 	//
 	// If we're logged in, pull out the user info
@@ -75,7 +65,20 @@ router.get("/:crowd/:group", function(req, res, next) {
 
 	}
 
-	res.render("group", { crowd: crowd, group: group, crowd_name: data[crowd].name, data: data[crowd][group], user:user });
+	if (!data[crowd]) {
+		res.status(404);
+		res.render("404-temp", { url: req.url, message: "Crowd not found!", user: user, last_run: last_run });
+		return(null);
+	}
+
+	if (!data[crowd][group]) {
+		res.status(404);
+		res.render("404-temp", { url: req.url, message: "Group not found!", user: user, last_run: last_run });
+		return(null);
+	}
+
+	res.render("group", { crowd: crowd, group: group, crowd_name: data[crowd].name, 
+		data: data[crowd][group], user:user, last_run: last_run });
 
 });
 
