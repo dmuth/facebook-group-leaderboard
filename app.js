@@ -1,3 +1,5 @@
+
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -48,17 +50,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-setInterval(function() {
-/*
-	console.log("TEST", JSON.stringify(fb.getData(), null, 2));
-	console.log("TESTap", fb.getData().anthrocon);
-	console.log("TESTap", fb.getData().anthrocon.anthrocon10.post_stats.length);
-	console.log("TESTac", fb.getData().anthrocon.anthrocon10.comment_stats.length);
-	console.log("TESTap", fb.getData().anthrocon.anthrocon50.post_stats.length);
-	console.log("TESTac", fb.getData().anthrocon.anthrocon50.comment_stats.length);
-*/
-	}, 3000);
 
 app.use(session());
 app.use(passport.initialize());
