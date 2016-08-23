@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "DEBUG=app*,facebook*,auth*,page-*,query*,tokens* node ./bin/www",
-	"clean": "rm -rfv $(pwd)/bin/cache/",
+	"clean": "rm -rfv $(pwd)/bin/cache/ sessions/*",
     "test": "mocha -R spec"
   },
   "dependencies": {
