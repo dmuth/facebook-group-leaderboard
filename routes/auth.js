@@ -42,7 +42,9 @@ passport.use(new FacebookStrategy({
 		queryAsync(uri, accessToken, 10).then(function(data) {
 
 			var expires = data.data.expires_at;
-			debug("Token for user '" + user.name + "' expires at " + new Date(expires * 1000));
+			var seconds_until_expire = (expires) - (new Date().getTime() / 1000);
+			debug("Token for user '" + user.name + "' expires at " + new Date(expires * 1000) 
+				+ " (" + seconds_until_expire + " seconds from now)");
 
 			debug("Logged in! User we got from Facebook: %j", user);
 
