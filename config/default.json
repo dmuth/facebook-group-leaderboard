@@ -2,78 +2,32 @@
 
 
 //
-// Define our "crowds", which are groups of groups.
-// The reason we have a higher level of organization here is because we may want 
-// pull data from the same group multiple times (Top 5, Top 10, Top 25, etc...)
-// and this allows us to have a logical grouping of such things.
+// Our info for our Facebook app.
 //
-"crowds": {
-
-	"anthrocon": {
-		"name": "Anthrocon Leaderboards",
-
-		"groups": {
-
-			"anthrocon10": {
-				//
-				// Name is what will be dispalyed on the page.
-				// If not specified, defaults to the key.
-				//
-				name: "Anthrocon recent 10",
-				//
-				// The "id" field is REQUIRED.  Everything else is optional.
-				//
-				id: "49844448265",
-				numPosts: 10,
-				numTopPosters: 5,
-				numTopCommenters: 3,
-				refreshInterval: 300,
-				retryInterval: 10,
-			},
-
-			"anthrocon50": {
-				name: "Anthrocon recent 50",
-				id: "49844448265",
-				numPosts: 50,
-				numTopPosters: 10,
-				numTopCommenters: 10,
-				refreshInterval: 300,
-				retryInterval: 10,
-			},
-
-		},
-
-	},
-
-	"eurofurence": {
-		"name": "Eurofurence Lists",
-
-		"groups": {
-
-			"eurofurence10": {
-				name: "Eurofurence recent 10",
-				id: "487362771386161",
-				numPosts: 10,
-				numTopPosters: 10,
-				numTopCommenters: 10,
-				refreshInterval: 300,
-				retryInterval: 10,
-			},
-
-		},
-
-	},
-
-},
-
-//
-// Our info for our Facebook app
+// You will need to create a Facebook app for this app.  
+// This can be done at https://developers.facebook.com/
 //
 facebookAuth: {
+	//
+	// These two values can be retrieved from your app's configuration.
+	//
     clientID: "FIXME",
     clientSecret: "FIXME",
+	//
+	// This should be set to the /auth/facebook/callback endpoint on your server.
+	// So something like http://localhost:3000/auth/facebook/callback or similar.
+	//
     callbackURL: "FIXME",
 },
+
+//
+// Download and display user photos.
+// The only downside to doing this is that an extra API request is made for each
+// user, and you MAY go over your limit.  If this happens, you'll either need
+// more users using your app (Facebook increases API requests with more users),
+// less frequent fetches, or you'll need to turn this feature off.
+//
+userPhotos: true,
 
 /////
 //
@@ -89,7 +43,7 @@ facebookAuth: {
 //
 // You can generate a replacement key with DiceWare: https://www.dmuth.org/diceware/
 //
-sessionSecret: "ChildClarkSnyder",
+sessionSecret: "FIXME",
 
 //
 // How many seconds before retrying. in case of an error.
