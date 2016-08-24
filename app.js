@@ -15,6 +15,7 @@ var config = require("config");
 var Facebook = require("./lib/facebook");
 var force_login = require("./lib/middleware/login");
 var Tokens = require("./lib/tokens");
+var onboarding = require("./lib/onBoarding.js");
 
 var session = require("./lib/session")(config.sessionSecret);
 
@@ -22,6 +23,17 @@ var session = require("./lib/session")(config.sessionSecret);
 var tokens = new Tokens();
 var fb = new Facebook(config, tokens);
 fb.go();
+
+//
+// Run our pre-flight checks on system config.
+// If something goes wrong, bail out.
+//
+onboarding.go(config, tokens, function(error) {
+	if (error) { 
+		process.exit(1);
+	}
+});
+
 
 
 var routes = require('./routes/index');
