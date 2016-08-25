@@ -8,7 +8,7 @@
 //
 // You can generate a replacement key with DiceWare: https://www.dmuth.org/diceware/
 //
-sessionSecret: "ChildClarkSnyder2",
+sessionSecret: "FIXME",
 
 //
 // Our info for our Facebook app
