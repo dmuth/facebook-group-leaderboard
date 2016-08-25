@@ -37,11 +37,10 @@ block content
 						- var percent = val.percent;
 						- var post_string = "posts";
 						- if (count == 1) { post_string = "post"; }
-						- var url_user = "/group/" + crowd + "/" + group + "/" + id ;
 						if (picture)
-							<a href="#{url_user}" ><img class="user-picture" src="#{picture}" ">#{name}</a>
+							<a href="http://www.facebook.com/#{id}" ><img class="user-picture" src="#{picture}" ">#{name}</a>
 						else
-							a(href="{#url_user}" ) #{name}
+							a(href="http://www.facebook.com/#{id}" ) #{name}
 
 						div(class="progress")
 							div(class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: #{percent}%;")
