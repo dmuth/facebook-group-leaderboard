@@ -55,7 +55,7 @@ block content
 									div(class="panel-body") #{message}
 										if post.picture
 											p
-											p <img src="#{post.picture}" />
+											p <a href="#{post.full_picture}"><img src="#{post.picture}" /></a>
 
 
 		if comment_stats.posts
