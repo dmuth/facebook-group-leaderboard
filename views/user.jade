@@ -58,24 +58,25 @@ block content
 											p <a href="#{post.full_picture}"><img src="#{post.picture}" /></a>
 
 
-		if comment_stats.posts
-			div(class="col-md-6")
-				h2 User Comments
-				each comment, index in comment_stats.posts
+		if comment_stats
+			if comment_stats.posts
+				div(class="col-md-6")
+					h2 User Comments
+					each comment, index in comment_stats.posts
 
-					div(class="row")
-						div(class="col-md-12")
-							div(class="panel panel-default")
+						div(class="row")
+							div(class="col-md-12")
+								div(class="panel panel-default")
 
-								- var url = "http://www.facebook.com/" + comment.id;
-								- var created_time = moment(comment.created_time).format("MMM D, YYYY H:mm A Z");
-								- var message = comment.message;
-								- if (!message) { message = "[ Embedded Facebook Emoticon ]"; }
-								- var like_count = comment.like_count;
+									- var url = "http://www.facebook.com/" + comment.id;
+									- var created_time = moment(comment.created_time).format("MMM D, YYYY H:mm A Z");
+									- var message = comment.message;
+									- if (!message) { message = "[ Embedded Facebook Emoticon ]"; }
+									- var like_count = comment.like_count;
 
-								div(class="panel-heading") 
-									| <a href="#{url}">#{created_time}</a>
-									| <span class="fa fa-thumbs-up" style="color: #3b5998;"> #{like_count}</span>
-								div(class="panel-body") #{message}
+									div(class="panel-heading") 
+										| <a href="#{url}">#{created_time}</a>
+										| <span class="fa fa-thumbs-up" style="color: #3b5998;"> #{like_count}</span>
+									div(class="panel-body") #{message}
 
 
