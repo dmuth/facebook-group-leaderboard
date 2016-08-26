@@ -16,7 +16,7 @@ block content
 		li(class="active") #{data.name}
 
 
-	- var last = data.last_updated
+	- var last = moment(data.last_updated).fromNow();
 	p(class="last-updated") Last updated: #{last}
 
 	div(class="row")
