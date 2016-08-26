@@ -146,7 +146,7 @@ router.get("/:crowd/:group/:user_id", function(req, res, next) {
 	var last_updated = group_data.last_updated;
 
 	var poster = {};
-	if (post_stats.user) {
+	if (post_stats && post_stats.user) {
 		poster = post_stats.user;
 	} else {
 		poster = comment_stats.user;
