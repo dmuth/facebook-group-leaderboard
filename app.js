@@ -8,6 +8,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var debug = require("debug")("app:main");
 var Promise = require("bluebird");
+var moment = require("moment");
 
 var passport = require('passport');
 
@@ -52,6 +53,7 @@ app.set('view engine', 'jade');
 // Don't strip whitespace in Jade
 //
 app.locals.pretty = true;
+app.locals.moment = moment;
 
 
 // uncomment after placing your favicon in /public
