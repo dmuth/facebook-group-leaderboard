@@ -41,9 +41,9 @@ block content
 					h2 User Posts
 					div(class="row")
 						div(class="col-md-6")
-							p Total Posts: #{post_stats.posts.length}
+							h3 Total Posts: #{post_stats.posts.length}
 						div(class="col-md-6")
-							p Total Likes: #{post_stats.num_likes} <span class="fa fa-thumbs-up" style="color: #3b5998; " />
+							h3 Total Likes: #{post_stats.num_likes} <span class="fa fa-thumbs-up" style="color: #3b5998; " />
 
 					each post, index in post_stats.posts
 						div(class="row")
@@ -72,9 +72,9 @@ block content
 					h2 User Comments
 					div(class="row")
 						div(class="col-md-6")
-							p Total Comments: #{comment_stats.posts.length}
+							h3 Total Comments: #{comment_stats.posts.length}
 						div(class="col-md-6")
-							p Total Likes: #{comment_stats.num_likes} <span class="fa fa-thumbs-up" style="color: #3b5998; " />
+							h3 Total Likes: #{comment_stats.num_likes} <span class="fa fa-thumbs-up" style="color: #3b5998; " />
 
 					each comment, index in comment_stats.posts
 
