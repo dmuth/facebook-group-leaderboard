@@ -58,7 +58,7 @@ block content
 
 									div(class="panel-heading") 
 										| <a href="#{url}">#{created_time}</a>
-										| <span class="fa fa-thumbs-up" style="color: #3b5998;"> #{like_count}</span>
+										| #{like_count} <span class="fa fa-thumbs-up" style="color: #3b5998;"> </span>
 									div(class="panel-body") #{message}
 										if post.picture
 											p
@@ -90,7 +90,7 @@ block content
 
 									div(class="panel-heading") 
 										| <a href="#{url}">#{created_time}</a>
-										| <span class="fa fa-thumbs-up" style="color: #3b5998;"> #{like_count}</span>
+										| #{like_count} <span class="fa fa-thumbs-up" style="color: #3b5998;"> </span>
 									div(class="panel-body") #{message}
 
 
