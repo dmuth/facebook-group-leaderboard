@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "DEBUG=app*,facebook*,auth*,page-*,query*,tokens*,onboarding* node ./bin/www",
-	"clean": "rm -rfv $(pwd)/bin/cache/ $(pwd)/sessions/*",
+    "clean": "rm -rfv $(pwd)/bin/cache/ $(pwd)/sessions/*",
     "test": "mocha -R spec"
   },
   "dependencies": {
@@ -16,6 +16,7 @@
     "express": "^4.13.4",
     "express-session": "^1.14.0",
     "jade": "~1.11.0",
+    "moment": "^2.14.1",
     "morgan": "~1.7.0",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",

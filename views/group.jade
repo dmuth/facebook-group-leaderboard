@@ -16,8 +16,14 @@ block content
 		li(class="active") #{data.name}
 
 
-	- var last = data.last_updated
+	- var last = moment(data.last_updated).fromNow();
 	p(class="last-updated") Last updated: #{last}
+
+	div(class="row")
+		div(class="col-md-4")
+			a(href="http://www.facebook.com/#{data.id}" class="btn btn-primary btn-block" role="button")
+				| View Group on Facebook
+	p
 
 	div(class="row")
 		div(class="col-md-6")
@@ -37,10 +43,11 @@ block content
 						- var percent = val.percent;
 						- var post_string = "posts";
 						- if (count == 1) { post_string = "post"; }
+						- var url_user = "/group/" + crowd + "/" + group + "/" + id ;
 						if (picture)
-							<a href="http://www.facebook.com/#{id}" ><img class="user-picture" src="#{picture}" ">#{name}</a>
+							<a href="#{url_user}" ><img class="user-picture" src="#{picture}" ">#{name}</a>
 						else
-							a(href="http://www.facebook.com/#{id}" ) #{name}
+							a(href="{#url_user}" ) #{name}
 
 						div(class="progress")
 							div(class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: #{percent}%;")
@@ -62,10 +69,11 @@ block content
 						- var percent = val.percent
 						- var string = "comments";
 						- if (count == 1) { comment_string = "comment"; }
+						- var url_user = "/group/" + crowd + "/" + group + "/" + id ;
 						if (picture)
-							<a href="http://www.facebook.com/#{id}" ><img class="user-picture" src="#{picture}" ">#{name}</a>
+							<a href="#{url_user}" ><img class="user-picture" src="#{picture}" ">#{name}</a>
 						else
-							a(href="http://www.facebook.com/#{id}" ) #{name}
+							a(href="{#url_user}" ) #{name}
 
 						div(class="progress")
 							div(class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: #{percent}%;")
