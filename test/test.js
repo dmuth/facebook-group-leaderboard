@@ -486,10 +486,101 @@ describe("Token handling", function () {
 	});
 
 
+	it("Update token metadata", function(done) {
+
+		var token = new tokens();
+		var now = new Date().getTime();
+		var expire = now + 1000000;
+
+		var id;
+		var lastTried = 0;
+		var lastSuccessful = 0;
+
+		token.load().then(function() {
+			return token.put("test token", "test name", expire);
+
+		}).then(function() {
+			return token.put("test token2", "test name2", expire);
+
+		}).then(function() {
+			return token.get();
+
+		}).then(function(data) {
+			//
+			// Grab our token metadata
+			//
+			data.token.should.equal("test token");
+			data.expire.should.equal(expire);
+			id = data.token;
+			lastTried = data.lastTried;
+			lastSuccessful = data.lastSuccessful;
+			
+			return token.updateLastTried(id);
+		}).then(function() {
+
+			return token.updateLastFailed(id);
+		}).then(function() {
+
+			return token.updateLastFailed(id);
+		}).then(function() {
+
+			return token.get();
+		}).then(function() {
+
+			return token.get();
+		}).then(function(data) {
+			data.numErrorsSinceLastSuccessful.should.equal(2);
+			data.lastTried.should.be.greaterThan(lastTried);
+			data.lastSuccessful.should.equal(lastSuccessful);
+
+			return token.updateLastSuccessful(id);
+		}).then(function() {
+
+			return token.get();
+		}).then(function() {
+
+			return token.get();
+		}).then(function(data) {
+			data.numErrorsSinceLastSuccessful.should.equal(0);
+			data.lastSuccessful.should.be.greaterThan(lastSuccessful);
+
+
+			//
+			// Now test our functions with bad token IDs
+			//
+			token.updateLastTried("foobar").then(function() {
+				done("We shouldn't be here!");
+
+			}).catch(function(error) {
+				error.should.match(/Token ID.*not found!/);
+
+				return token.updateLastFailed("foobar");
+
+			}).then(function() {
+				done("We shouldn't be here!");
+
+			}).catch(function(error) {
+				error.should.match(/Token ID.*not found!/);
+
+				return token.updateLastSuccessful("foobar");
+
+			}).then(function() {
+				done("We shouldn't be here!");
+
+			}).catch(function(error) {
+				error.should.match(/Token ID.*not found!/);
+
+				done();
+
+			});
+
+		}).catch(function(error) {
+			done(error);
+		});
+
+	});
 
 
 });
-
-
 
 
