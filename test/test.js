@@ -59,7 +59,6 @@ describe("Token handling", function () {
 			return token.clear();
 
 		}).then(function() {
-
 			return token.count();
 
 		}).then(function(num) {
@@ -72,7 +71,6 @@ describe("Token handling", function () {
 
 
 	});
- 
 
  	it("get()", function(done) {
 
@@ -183,21 +181,27 @@ describe("Token handling", function () {
 
 		var token = new tokens();
 
-		token.put("test token", new Date().getTime() + 1000000).then(function() {
+		token.load().then(function() {
+			return token.put("test token", new Date().getTime() + 1000000);
+
+		}).then(function() {
 			return token.put("test token2", new Date().getTime() + 1000000);
 
 		}).then(function() {
 			return token.put("test token3", new Date().getTime() + 1000000);
 
 		}).then(function() {
+			return token.count();
+
+		}).then(function(num) {
+			num.should.equal(3);
 			return token.delete("test token");
 
 		}).then(function() {
-			return token.get();
+			return token.count();
 
-		}).then(function(data) {
-			data.token.should.equal("test token");
-
+		}).then(function(num) {
+			num.should.equal(2);
 			return token.get();
 
 		}).then(function(data) {
@@ -209,7 +213,11 @@ describe("Token handling", function () {
 			return token.get();
 
 		}).then(function(data) {
-			data.token.should.equal("test token");
+			data.token.should.equal("test token2");
+			return token.get();
+
+		}).then(function(data) {
+			data.token.should.equal("test token3");
 
 			return token.delete("test not here");
 
@@ -217,6 +225,7 @@ describe("Token handling", function () {
 			done("we shouldn't be here");
 
 		}).catch(function(error) {
+			error.should.match(/^Could not find token/);
 			done();
 
 		});
@@ -447,6 +456,36 @@ describe("Token handling", function () {
 		});
 
 	});
+
+	it("load() after put(), then get()", function(done) {
+
+		var token = new tokens();
+		token.load().then(function() {
+			return token.put("test token", "test name", new Date().getTime() + 1000000);
+
+		}).then(function() {
+			return token.load();
+
+		}).then(function() {
+			return token.get();
+
+		}).then(function(data) {
+			data.token.should.equal("test token");
+			return token.count();
+
+		}).then(function(num) {
+			num.should.equal(1);
+
+			done();
+
+		}).catch(function(error) {
+			done(error);
+
+		});
+
+	});
+
+
 
 
 });
