@@ -34,11 +34,6 @@ facebookAuth: {
 
 			"anthrocon10": {
 				//
-				// Name is what will be dispalyed on the page.
-				// If not specified, defaults to the key.
-				//
-				name: "Stats for the 10 most recent posts",
-				//
 				// The "id" field is REQUIRED.  Everything else is optional.
 				//
 				id: "49844448265",
@@ -50,9 +45,17 @@ facebookAuth: {
 			},
 
 			"anthrocon50": {
-				name: "Stats for the 50 most recent posts",
 				id: "49844448265",
 				numPosts: 50,
+				numTopPosters: 10,
+				numTopCommenters: 10,
+				refreshInterval: 300,
+				retryInterval: 10,
+			},
+
+			"anthrocon250": {
+				id: "49844448265",
+				numPosts: 250,
 				numTopPosters: 10,
 				numTopCommenters: 10,
 				refreshInterval: 300,
