@@ -36,6 +36,9 @@ facebookAuth: {
 				//
 				// The "id" field is REQUIRED.  Everything else is optional.
 				//
+				// If you don't know the ID of your group, it can be 
+				// retrieved from https://lookup-id.com/ 
+				//
 				id: "49844448265",
 				numPosts: 10,
 				numTopPosters: 5,
