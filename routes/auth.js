@@ -37,9 +37,16 @@ passport.use(new FacebookStrategy({
 		//
 		// Now get some info on this token, such as when it expires
 		//
-		var uri = "/debug_token?input_token=" + accessToken + "&access_token=" + config.clientSecret;
+		// Note that we are using the debug_token endpoint, and since this endpoint
+		// is only accessible to app admins and developers, the correct way to access it
+		// (according to https://developers.facebook.com/docs/graph-api/reference/v2.7/debug_token)
+		// is to specific the App ID and App Secret concatenated together with a pipe.
+		//
+		// I have no idea why this one part of Facebook Graph is so weird.
+		//
+		var uri = "/debug_token?input_token=" + accessToken + "&access_token=" + config.clientID + "|" + config.clientSecret;
 
-		queryAsync(uri, accessToken, 10).then(function(data) {
+		queryAsync(uri, "", 60).then(function(data) {
 
 			var expires = data.data.expires_at;
 			var seconds_until_expire = (expires) - (new Date().getTime() / 1000);
