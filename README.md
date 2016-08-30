@@ -115,6 +115,38 @@ are being used to query Facebook would require substantial work to make happen, 
 not sure if it's worth the effort at this point.
 
 
+## Deployment in Production
+
+If you're running this app on a production machine, you probably don't want to just type 
+`npm start` and walk away.  Here are some configurations I can recommend, based on my own
+knowledge and experience:
+
+<ul>
+
+<li>
+<a href="deploy/nginx.conf">Nginx.conf</a> - Sample configuratio to run this app behind the
+`/facebook` endpoint on an Nginx webserver that is serving up another site.  Note that we
+have to take special care with the `proxy_redirect` configuration to rewrite redirects as
+well sa the `sub_filter` configuration to rewrite HTML and image links.
+</li>
+
+<li>
+<a href="deploy/facebook-leaderboard.conf">Upstart Configuration</a> - This is a fairly straightforward
+configuration for Upstart to run the app as a server.  Install it and use `start facebook-leaderboard`
+to kick off the app.
+</li>
+
+<li>
+<a href="deploy/puppet-manifest.pp">Puppet Manifest</a> - A sample manifest for installation the 
+Upstart file and local.json file via Puppet.  (Note that there isn't support for the `vcsrepo` module,
+as my current version of Puppet doesn't seem to have module support.  Sorry!)
+</li>
+
+</ul>
+
+If you have any configurations you'd like to have included, please send me a pull request!
+
+
 ## Contact info
 
 - Email: doug.muth AT gmail.com and dmuth AT dmuth.org
