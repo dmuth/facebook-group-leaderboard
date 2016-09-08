@@ -85,12 +85,11 @@ block content
 									- var url = "http://www.facebook.com/" + comment.id;
 									- var created_time = moment(comment.created_time).format("MMM D, YYYY H:mm A Z");
 									- var message = comment.message;
-									- if (!message) { message = "[ Embedded Facebook Emoticon ]"; }
 									- var like_count = comment.like_count;
 
 									div(class="panel-heading") 
 										| <a href="#{url}">#{created_time}</a>
 										| #{like_count} <span class="fa fa-thumbs-up" style="color: #3b5998;"> </span>
-									div(class="panel-body") #{message}
+									div(class="panel-body") !{message}
 
 
