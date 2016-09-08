@@ -8,6 +8,11 @@ unecssarily spamming the group.
 
 **Live Demo:** <a href="http://www.dmuth.org/facebook">http://www.dmuth.org/facebook</a>.
 
+<img src="/img/screenshot1.jpg" width="250" />
+<img src="/img/screenshot2.jpg" width="250" />
+<img src="/img/screenshot3.jpg" width="250" />
+
+
 
 ## Setup and configuration
 
