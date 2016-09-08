@@ -72,6 +72,17 @@ numTopPosters: 10,
 //
 numTopCommenters: 10,
 
+//
+// Allow closed groups?
+//
+// Normally, we do not index closed groups, because not all users who authenticated to this
+// app may have access to whatever closed groups that we're indexing.
+//
+// This is false by default, set to true only if you are sure you want to allow closed groups.
+//
+allowClosedGroups: false,
+
+
 }
 
 
