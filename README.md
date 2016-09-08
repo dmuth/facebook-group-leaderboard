@@ -1,8 +1,8 @@
 
-# Facebook Group Stats
+# Facebook Group Leaderboard
 
 This is a Node.js app which uses the Facebook Graph API to download recent posts from 1 or more groups,
-and display the top posters and top commenters in a leaderboard-style format.  In production, I use this app
+and display the top posters, top commenters, and their stats in a leaderboard-style format.  In production, I use this app
 to keep track of some gruops I admin with thousands of users each, and make sure that no one is
 unecssarily spamming the group.
 
