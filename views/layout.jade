@@ -27,6 +27,25 @@ html
 		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 		<![endif]-->
 
+		//
+		// No URL is provided here, as this can be installed on different servers
+		// This code borrowed from http://dustinfarris.com/2012/07/05/facebook-meta-tags-using-django-and-jade.html
+		//
+		meta(property='og:title', content='Facebook Group Leaderboard')
+		meta(property='og:description', content='App to generate leaderboard-style stats from Facebook Groups')
+		meta(property='og:image', content='https://raw.githubusercontent.com/dmuth/facebook-group-leaderboard/master/img/screenshot2.jpg')
+
+
+		//
+		// Borrowed from https://gist.github.com/craigmdennis/28e4433d5fcaadd7ec32
+		//
+		meta(name="twitter:card", content="summary")
+		meta(name="twitter:site", content="@dmuth")
+		meta(name="twitter:title", content="Facebook Group Leaderboard")
+		meta(name="twitter:description", content="App to generate leaderboard-style stats from Facebook Groups")
+		meta(name="twitter:img", content="https://raw.githubusercontent.com/dmuth/facebook-group-leaderboard/master/img/screenshot2.jpg")
+		//meta(name="twitter:url", content="{{url}}")
+
 	body
 
 		// Based on http://webdesign.tutsplus.com/tutorials/baking-bootstrap-snippets-with-jade--cms-22798
