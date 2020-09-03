@@ -24,7 +24,7 @@
     "serve-favicon": "^2.3.0",
     "session-file-store": "^0.2.0",
     "should": "^11.1.0",
-    "superagent": "^1.8.4",
+    "superagent": "^6.1.0",
     "supertest": "^2.0.0"
   }
 }
